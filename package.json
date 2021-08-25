@@ -2,14 +2,18 @@
   "name": "cypress-helper",
   "version": "2.0.0",
   "description": "A Cypress helper for a lot of things like file-upload and print prettier for cypress-audit log",
-  "main": "dist/bundle.js",
+  "main": "dist/index.js",
   "private": false,
   "engines": {
     "node": ">=10.0.0"
   },
+  "publishConfig": {
+    "source": "dist/index.js",
+    "main": "dist/index.js"
+  },
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "tsc && microbundle build -i build/index.js -f cjs --target node --strict --no-compress --no-generate-types",
+    "build": "tsc && microbundle build -i build/index.js -f cjs --target node --strict --no-compress --no-generate-types --sourcemap=false",
     "postbuild": "cp -R types/ dist/ && cp package.json dist/ && rm -rf build/",
     "lint": "eslint . --ext=ts",
     "prettier": "prettier --write .",
