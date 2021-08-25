@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A Cypress helper for a lot of things like file-upload and print prettier for cypress-audit log",
   "main": "dist/index.js",
+  "private": false,
   "engines": {
     "node": ">=10.0.0"
   },
@@ -33,7 +34,6 @@
     "url": "https://github.com/viniciusreinehr/cypress-helper/issues"
   },
   "homepage": "https://github.com/viniciusreinehr/cypress-helper#readme",
-  "dependencies": {},
   "devDependencies": {
     "@types/cypress": "^1.1.3",
     "@types/mocha": "^9.0.0",
