@@ -1,0 +1,13 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "types": ["cypress", "node"],
+    "lib": ["es5", "dom"],
+    "outDir": "./dist/",
+    "allowJs": true,
+    "sourceMap": false
+  },
+  "include": ["./src/**/*"]
+}
