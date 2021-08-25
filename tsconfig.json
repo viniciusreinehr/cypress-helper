@@ -4,10 +4,8 @@
     "module": "ESNext",
     "moduleResolution": "node",
     "types": ["cypress", "node"],
-    "lib": ["es5", "dom"],
-    "outDir": "./dist/",
-    "allowJs": true,
-    "sourceMap": false
+    "lib": ["esnext", "dom"],
+    "outDir": "./build/"
   },
   "include": ["./src/**/*"]
 }
