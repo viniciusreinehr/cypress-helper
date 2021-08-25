@@ -39,7 +39,6 @@ export default class mainService {
         return this.file.resolveFile(f, window)
       }))
         .then(files => {
-          cy.log(`File then: ${files}`);
           return files.filter((f: string | File) => ValidatorService.file(f as File, allowEmpty)
         )})
         .then(files => {
