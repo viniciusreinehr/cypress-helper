@@ -1,4 +1,4 @@
-import { ENCODING } from "../enums/encoding.enum";
+import { ENCODING } from '../enums/encoding.enum'
 
 export default interface FileContentInterface {
   filePath: string

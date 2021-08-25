@@ -1,4 +1,4 @@
-import { SUBJECT_TYPE } from "./subject-type.const";
+import { SUBJECT_TYPE } from './subject-type.const'
 
 export const EVENTS_BY_SUBJECT_TYPE = {
   [SUBJECT_TYPE.INPUT]: ['change'],

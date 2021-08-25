@@ -12,11 +12,10 @@
     "main": "dist/index.js"
   },
   "scripts": {
-    "prebuild": "rimraf dist",
+    "prebuild": "rimraf dist && rimraf build",
     "build": "tsc && microbundle build -i build/index.js -f cjs --target node --strict --no-compress --no-generate-types --sourcemap=false",
-    "postbuild": "cp -R types/ dist/ && cp package.json dist/ && rm -rf build/",
-    "lint": "eslint . --ext=ts",
-    "prettier": "prettier --write .",
+    "lint": "eslint ./src --ext=ts",
+    "prettier": "prettier --write ./src",
     "test": "echo \"Error: no test specified\" && exit 0"
   },
   "repository": {

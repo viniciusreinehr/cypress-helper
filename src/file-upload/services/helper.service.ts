@@ -7,19 +7,16 @@ import DomService from './dom.service'
 import FileService from './file.service'
 
 export default class HelperService {
-  attachFileToElement(
-    subject: HTMLElement,
-    opts: fileElementInterface,
-  ): void {
+  attachFileToElement(subject: HTMLElement, opts: fileElementInterface): void {
     const { files, subjectType, force, window } = opts
-  
+
     const dataTransfer = new window.DataTransfer()
     files.forEach(f => dataTransfer.items.add(f))
-  
+
     if (subjectType === SUBJECT_TYPE.INPUT) {
       const inputElement = subject[0]
       inputElement.files = dataTransfer.files
-  
+
       if (force) {
         this.dispatchEvents(
           inputElement,
@@ -29,11 +26,11 @@ export default class HelperService {
       }
     } else if (subjectType === SUBJECT_TYPE.DRAG_N_DROP) {
       const inputElements = subject[0].querySelectorAll('input[type="file"]')
-  
+
       if (inputElements.length === 1) {
         const inputElement = inputElements[0]
         inputElement.files = dataTransfer.files
-  
+
         if (force) {
           this.dispatchEvents(
             inputElement,
@@ -44,7 +41,7 @@ export default class HelperService {
       } else {
         const inputElement = subject[0]
         inputElement.files = dataTransfer.files
-  
+
         if (force) {
           this.dispatchEvents(
             inputElement,
@@ -56,10 +53,8 @@ export default class HelperService {
     }
   }
 
-  getFixtureInfo(
-    fixtureInput: string | FileInterface,
-  ): FileInterface {
-    const fileService = new FileService();
+  getFixtureInfo(fixtureInput: string | FileInterface): FileInterface {
+    const fileService = new FileService()
     if (typeof fixtureInput === 'string') {
       return {
         filePath: fixtureInput,
@@ -68,12 +63,13 @@ export default class HelperService {
         fileName: fileService.getFileName(fixtureInput),
       }
     }
-  
+
     return {
       filePath: fixtureInput.filePath,
       encoding: fixtureInput.encoding || '',
       mimeType: fixtureInput.mimeType || '',
-      fileName: fixtureInput.fileName || fileService.getFileName(fixtureInput.filePath),
+      fileName:
+        fixtureInput.fileName || fileService.getFileName(fixtureInput.filePath),
       fileContent: fixtureInput.fileContent,
       lastModified: fixtureInput.lastModified,
     }
@@ -99,11 +95,11 @@ export default class HelperService {
 
   private getEventsBySubjectType(subjectType: string): string[] {
     const events = EVENTS_BY_SUBJECT_TYPE[subjectType]
-  
+
     events.push('change')
     // if (subjectType === SUBJECT_TYPE.DRAG_N_DROP && BrowserService.isBrowserFirefox()) {
     // }
-  
+
     return events
   }
 }

@@ -1,4 +1,4 @@
-import ErrorTypesInterface from "../interfaces/error-types.interface"
+import ErrorTypesInterface from '../interfaces/error-types.interface'
 
 export default class InternalError extends Error {
   constructor(errorType: ErrorTypesInterface, ...params: string[]) {

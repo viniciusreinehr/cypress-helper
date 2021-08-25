@@ -8,8 +8,8 @@ import FileService from './file.service'
 
 export default class mainService {
   constructor(
-    private readonly helper = new HelperService,
-    private readonly file = new FileService,
+    private readonly helper = new HelperService(),
+    private readonly file = new FileService(),
   ) {}
 
   attachFile(
@@ -26,21 +26,27 @@ export default class mainService {
       force,
       allowEmpty,
     })
-  
+
     const fixturesArray = Array.isArray(fixtureOrFixtureArray)
       ? fixtureOrFixtureArray
       : [fixtureOrFixtureArray]
-    const fixtures = fixturesArray.map(this.helper.getFixtureInfo).filter((fixture: FileInterface) => ValidatorService.fixtures(fixture))
-  
+    const fixtures = fixturesArray
+      .map(this.helper.getFixtureInfo)
+      .filter((fixture: FileInterface) => ValidatorService.fixtures(fixture))
+
     cy.window({ log: false }).then(window => {
       const forceValue = force || this.helper.getForceValue(subject)
-  
-      Cypress.Promise.all(fixtures.map(f => {
-        return this.file.resolveFile(f, window)
-      }))
+
+      Cypress.Promise.all(
+        fixtures.map(f => {
+          return this.file.resolveFile(f, window)
+        }),
+      )
         .then(files => {
-          return files.filter((f: string | File) => ValidatorService.file(f as File, allowEmpty)
-        )})
+          return files.filter((f: string | File) =>
+            ValidatorService.file(f as File, allowEmpty),
+          )
+        })
         .then(files => {
           this.helper.attachFileToElement(subject, {
             files,
@@ -58,7 +64,7 @@ export default class mainService {
           })
         })
     })
-  
+
     return cy.wrap(subject, { log: false })
   }
 
