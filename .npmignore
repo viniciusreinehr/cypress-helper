@@ -1,3 +1,11 @@
 cypress
 src
 types
+.prettierrc.json
+.prettierignore
+cypress.json
+.eslintrc.json
+tsconfig.json
+yarn.lock
+build
+.env
