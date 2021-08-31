@@ -23,5 +23,5 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-import '../../dist/file-upload'
+//import '../../dist/file-upload'
 import 'cypress-audit/commands'

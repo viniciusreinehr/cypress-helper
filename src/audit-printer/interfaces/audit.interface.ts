@@ -1504,7 +1504,7 @@ interface Lhr {
   stackPacks: unknown[]
 }
 
-interface Audits {
+export interface Audits {
   'is-on-https': Accesskeys
   'redirects-http': Accesskeys
   'service-worker': Accesskeys

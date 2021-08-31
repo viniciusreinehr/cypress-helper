@@ -1,6 +1,6 @@
 describe('Audit printer tests', () => {
   beforeEach(() => {
-    cy.visit('https://www.google.com/')
+    cy.visit('https://test-online.wiseup.com/login?lang=pt')
   })
 
   it('Performance', () => {
