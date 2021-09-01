@@ -25,6 +25,7 @@ export default class PrinterService {
 
     console.log(`${this.pad(topR, 4, 0)}${this.pad(bar, 0, 4)}${topL}`)
     console.log(`${this.pad(pipe, 4, 0)}${this.color.bold}${this.pad(`Pontuação geral do Lighthouse`, 0, this.SIZE)}${this.color.reset}${this.pad(pipe, 0, 4)}`)
+    console.log(`${this.pad(pipe, 4, 0)}${this.color.bold}${this.pad(``, 0, this.SIZE)}${this.color.reset}${this.pad(pipe, 0, 4)}`)
     text.forEach((score: ScoreInterface) => {
       let scorePoints = this.helper.convertScore(score.value)
       let logger = this.pad(pipe, 4, 0);
@@ -58,14 +59,20 @@ export default class PrinterService {
 
     console.log(`${this.pad(topR, 4, 0)}${this.pad(bar, 0, 4)}${topL}`)
     console.log(`${this.pad(pipe, 4, 0)}${this.color.bold}${this.pad(`Sugestões`, 0, this.OP_SIZE)}${this.color.reset}${this.pad(pipe, 0, 4)}`)
+    console.log(`${this.pad(pipe, 4, 0)}${this.color.bold}${this.pad(``, 0, 130)}${this.color.reset}${this.pad(pipe, 0, 4)}`)
 
     text.forEach((info: OpportunitiesInterface) => {
       let scoreValue = info.value
       let logger = this.pad(pipe, 4, 0);
-      logger+= this.pad(`${info.name}:`, 0, 10)
+      if(info.name == 'Domain:'){
+        logger+= this.color.yellow
+        logger+= this.color.bold
+      } 
+      logger+= this.pad(`${info.name}`, 0, 12)
+      logger+= this.color.reset
       logger+= this.color.purple
-      if(scoreValue.length >= 119) scoreValue = scoreValue.substr(0, 118)
-      logger+= this.pad(`${scoreValue}`, 0, 120)
+      if(scoreValue.length >= 117) scoreValue = scoreValue.substr(0, 116)
+      logger+= this.pad(`${scoreValue}`, 0, 118)
       logger+= this.color.reset
       logger+= this.pad(pipe, 0, 4)
       console.log(logger)

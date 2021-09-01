@@ -39,16 +39,31 @@ export default class OpportunitiesService {
 
                 let url = items[key]?.url? `${items[key]?.url}: ` : '';
 
-                if(protocol || url != '') opValues.push({name: 'URL', value:`${protocol}${url}`})
+                if(protocol || url != ''){
+                    if (url.indexOf('.com/') != -1){
+                        let urlSplit = url.split('.com')
+                        opValues.push({name: 'Domain:', value:`${protocol}${urlSplit[0]}.com`})
+                        opValues.push({name: 'Route:', value:`${protocol}${urlSplit[1]}`})
+                    }else if (url.indexOf('.net/') != -1){
+                        let urlSplit = url.split('.net')
+                        opValues.push({name: 'Domain:', value:`${protocol}${urlSplit[0]}.net`})
+                        opValues.push({name: 'Route:', value:`${protocol}${urlSplit[1]}`})
+                    }
+                    else{
+                        opValues.push({name: 'URL:', value:`${protocol}${url}`})
+                    }
+
+                } 
 
                 if(items[key]?.wastedBytes) {
-                    opValues.push({name: 'Tamanho', value: `${this.helper.convertSize(items[key].totalBytes)} Kb`})
-                    opValues.push({name: 'Redução', value: `${this.helper.convertSize(items[key].wastedBytes)} kb`})
+                    opValues.push({name: 'Size:', value: `${this.helper.convertSize(items[key].totalBytes)} Kb`})
+                    opValues.push({name: 'Reduction:', value: `${this.helper.convertSize(items[key].wastedBytes)} kb`})
                 }
 
                 if(items[key]?.wastedMs) {
-                    opValues.push({name: 'Redução', value: `${this.helper.convertTime(items[key].wastedMs)} s`})
+                    opValues.push({name: 'Reduction:', value: `${this.helper.convertTime(items[key].wastedMs)} s`})
                 }
+                opValues.push({name: '', value: ``})
 
             })
             this.printer.opportunitiesAndDiagnostics(opValues);
