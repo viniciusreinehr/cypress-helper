@@ -64,9 +64,8 @@ export default class TablesService {
                 if(items[key]?.wastedMs) {
                     opValues.push({name: 'Reduction:', value: `${this.helper.convertTime(items[key].wastedMs)} s`})
                 }
-
-                opValues.push({name: '', value: ``})
-
+                opValues.length > 0 ? opValues.push({name: '', value: ``}) : null
+              
             })
             this.printer.opportunitiesAndDiagnostics(opValues);
         }
