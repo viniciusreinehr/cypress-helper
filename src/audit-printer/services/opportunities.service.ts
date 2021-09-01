@@ -1,5 +1,5 @@
 import { Audits } from "../interfaces/audit.interface";
-import { ScoreInterface } from "../interfaces/printer.interface";
+import { OpportunitiesInterface } from "../interfaces/printer.interface";
 import PrinterService from "./printer.service";
 import HelperService from "./helper.service";
 
@@ -14,8 +14,7 @@ export default class OpportunitiesService {
     }
 
     private getAudit (item: Audits): void {
-        this.printer.text("OPPORTUNITIES")
-        this.printer.text("Opportunity and diagnostic")
+        this.printer.text("\n\nOPPORTUNITY\n")
 
         Object.keys(item).forEach((key) => {
             const scorePoints = this.helper.convertScore(item[key].score);
@@ -27,32 +26,32 @@ export default class OpportunitiesService {
     private getOpportunities(item) {
         if (item?.details?.type !== 'opportunity') return;
         this.printer.text(
-            `OPPORTUNITY: ${item.title} ${item.displayValue} - Time spent: ${this.helper.convertTime(item.numericValue)}` 
+            `OPPORTUNITY: ${item.title} ${item.displayValue} - Time spent: ${this.helper.convertTime(item.numericValue)}s` 
         )
 
         let items  = item?.details?.items;
+
+        const opValues: OpportunitiesInterface[] = []
         
         if(Object.keys(items).length > 0) {
-            this.printer.text(" - Sugestões:")
-
             Object.keys(items).forEach((key) => {
                 let protocol = items[key]?.protocol? `${items[key]?.protocol}`: '';
 
                 let url = items[key]?.url? `${items[key]?.url}: ` : '';
 
-                if(protocol || url != '') this.printer.text(`URL: ${protocol}${url}`)
+                if(protocol || url != '') opValues.push({name: 'URL', value:`${protocol}${url}`})
 
                 if(items[key]?.wastedBytes) {
-                    this.printer.text(` Tamanho: ${this.helper.convertSize(items[key].totalBytes)} Kb`)
-
-                    this.printer.text(` Redução possível: ${items[key].wastedBytes} kb`)
+                    opValues.push({name: 'Tamanho', value: `${this.helper.convertSize(items[key].totalBytes)} Kb`})
+                    opValues.push({name: 'Redução', value: `${this.helper.convertSize(items[key].wastedBytes)} kb`})
                 }
 
                 if(items[key]?.wastedMs) {
-                    this.printer.text(` Redução possível: ${this.helper.convertSize(items[key].wastedMs)} s`)
+                    opValues.push({name: 'Redução', value: `${this.helper.convertTime(items[key].wastedMs)} s`})
                 }
 
             })
+            this.printer.opportunitiesAndDiagnostics(opValues);
         }
 
     }

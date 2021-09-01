@@ -1,9 +1,10 @@
-import { ScoreInterface } from "../interfaces/printer.interface";
+import { OpportunitiesInterface, ScoreInterface } from "../interfaces/printer.interface";
 import ColorService from "./color.service"
 import HelperService from "./helper.service";
 
 export default class PrinterService {
   private SIZE = 100;
+  private OP_SIZE = 130;
 
   constructor(
     private readonly color = new ColorService(),
@@ -45,6 +46,31 @@ export default class PrinterService {
       console.log(logger)
     })
     console.log(`${this.pad(bottomR, 4, 0)}${this.pad(bar, 0, 4)}${bottomL}`)
+  }
+
+  opportunitiesAndDiagnostics(text: OpportunitiesInterface[]): void {
+    const bar = this.replicate(this.color.heavyHorizontal, this.OP_SIZE)
+    const pipe = this.color.heavyVertical
+    const topR = this.color.heavyDownAndRight
+    const topL = this.color.heavyDownAndLeft
+    const bottomR = this.color.heavyUpAndRight
+    const bottomL = this.color.heavyUpAndLeft
+
+    console.log(`${this.pad(topR, 4, 0)}${this.pad(bar, 0, 4)}${topL}`)
+    console.log(`${this.pad(pipe, 4, 0)}${this.color.bold}${this.pad(`Sugestões`, 0, this.OP_SIZE)}${this.color.reset}${this.pad(pipe, 0, 4)}`)
+
+    text.forEach((info: OpportunitiesInterface) => {
+      let scoreValue = info.value
+      let logger = this.pad(pipe, 4, 0);
+      logger+= this.pad(`${info.name}:`, 0, 10)
+      logger+= this.color.purple
+      if(scoreValue.length >= 119) scoreValue = scoreValue.substr(0, 118)
+      logger+= this.pad(`${scoreValue}`, 0, 120)
+      logger+= this.color.reset
+      logger+= this.pad(pipe, 0, 4)
+      console.log(logger)
+    })
+    console.log(`${this.pad(bottomR, 4, 0)}${this.pad(bar, 0, 4)}${bottomL}\n`)
   }
 
   break(number = 1): string {
