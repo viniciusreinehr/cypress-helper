@@ -2,10 +2,10 @@
   "compileOnSave": true,
   "compilerOptions": {
     "target": "ES5",
-    "module": "ESNext",
+    "module": "CommonJS",
     "moduleResolution": "node",
     "types": ["cypress", "node"],
-    "lib": ["esnext", "dom"],
+    "lib": ["ES5", "dom"],
     "outDir": "./dist/"
   },
   "include": ["./src/**/*"]

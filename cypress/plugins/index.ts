@@ -4,7 +4,7 @@
  */
 // eslint-disable-next-line no-var-requires
 const { lighthouse, prepareAudit } = require('cypress-audit')
-import AuditPrinter from '../../src/audit-printer/index'
+import AuditPrinter from '../../dist/audit-printer'
 
 export default (on, config) => {
   on('before:browser:launch', (browser, launchOptions) => {
