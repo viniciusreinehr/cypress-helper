@@ -25,3 +25,4 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 //import '../../dist/file-upload'
 import 'cypress-audit/commands'
+import '../../dist/file-upload'

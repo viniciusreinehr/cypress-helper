@@ -6,7 +6,10 @@
     "moduleResolution": "node",
     "types": ["cypress", "node"],
     "lib": ["ES5", "dom"],
-    "outDir": "./dist/"
+    "outDir": "./dist/",
+    "alwaysStrict": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
   },
   "include": ["./src/**/*"]
 }

@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+/// <reference types="../../dist" />
 describe('File upload test', () => {
   beforeEach(() => {
     cy.visit('https://css-tricks.com/examples/DragAndDropFileUploading/')
