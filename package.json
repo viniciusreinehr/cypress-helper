@@ -1,6 +1,6 @@
 {
   "name": "cypress-helper",
-  "version": "2.4.1",
+  "version": "3.0.0",
   "description": "A Cypress helper for a lot of things like file-upload and print prettier for cypress-audit log",
   "main": "dist/index.js",
   "private": false,
