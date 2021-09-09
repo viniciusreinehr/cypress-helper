@@ -2,7 +2,7 @@
     <h1 
     style="color:black; background-color: white; font-weight: bold; text-shadow:2px 1px 10px rgba(0,0,0,1); border-radius:1vh;">
     <img src="https://icons-for-free.com/iconfiles/png/512/cypress-1324440144114984250.png"
-    style="width: 4%"
+    style="width: 4%" width="4%"
     >
     Cypress Helper
     </h1>
